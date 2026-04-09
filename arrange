@@ -1,0 +1,13 @@
+#!/bin/bash
+
+for filepath in ./files/*; do
+    [ -f "$filepath" ] || continue
+
+    filename=$(basename "$filepath")
+    first_char="${filename:0:1}"
+    first_char="${first_char,,}"
+
+    if [[ "$first_char" =~ [a-z] ]] && [ -d "./$first_char" ]; then
+        mv "$filepath" "./$first_char/"
+    fi
+done
